@@ -1,7 +1,7 @@
 import React from 'react'
 import makerjs from 'makerjs'
 
-const Line = (props) => {
+const BackSide = (props) => {
     var line = {
         type: 'line',
         origin: [Number(props.startX), Number(props.startY)],
@@ -67,7 +67,7 @@ const Line = (props) => {
     var model = { paths: pathObject }
 
     const svg = makerjs.exporter.toSVG(model)
-    document.write(`<div className="ggg">${svg}</div>`)
+    document.write(`<div style="margin-bottom:20px">${svg}</div>`)
 }
 
-export default Line
+export default BackSide

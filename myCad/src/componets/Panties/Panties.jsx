@@ -1,0 +1,39 @@
+import React from 'react'
+import BackSide from './BackSide'
+import FrontSide from './FrontSide'
+import Gusset from './Gusset'
+
+function Panties(props) {
+    const ot = 720 //обхват талии
+    const ob = 970 //обхват бедер
+    const gs = 260 //глубина сиденья
+    const vb = 206 //высота бедра
+
+    return (
+        <div className="PantiesBlueprint">
+            <FrontSide ot={ot} ob={ob} gs={gs} vb={vb} startX="0" startY="0" />
+            {/* <BackSide
+                ot={ot}
+                ob={ob}
+                gs={gs}
+                vb={vb}
+                startX="0"
+                startY="0"
+                height="150"
+                width="350"
+            />
+            <Gusset
+                ot={ot}
+                ob={ob}
+                gs={gs}
+                vb={vb}
+                startX="0"
+                startY="0"
+                height="150"
+                width="350"
+            /> */}
+        </div>
+    )
+}
+
+export default Panties
