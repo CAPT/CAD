@@ -11,18 +11,25 @@ function Panties(props) {
 
     return (
         <div className="PantiesBlueprint">
-            <FrontSide ot={ot} ob={ob} gs={gs} vb={vb} startX="0" startY="0" />
-            {/* <BackSide
+            {/* <FrontSide
                 ot={ot}
                 ob={ob}
                 gs={gs}
                 vb={vb}
                 startX="0"
                 startY="0"
-                height="150"
-                width="350"
+                marginAmount={props.marginAmount}
+            /> */}
+            <BackSide
+                ot={ot}
+                ob={ob}
+                gs={gs}
+                vb={vb}
+                startX="0"
+                startY="0"
+                marginAmount={props.marginAmount}
             />
-            <Gusset
+            {/* <Gusset
                 ot={ot}
                 ob={ob}
                 gs={gs}

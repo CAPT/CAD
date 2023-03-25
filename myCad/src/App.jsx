@@ -9,7 +9,13 @@ function App() {
         <div className="App">
             {/* <Line startX="0" startY="0" height="150" width="350" /> */}
             {/* <Line height="250" width="300" /> */}
-            <Panties startX="0" startY="0" height="150" width="350" />
+            <Panties
+                startX="0"
+                startY="0"
+                height="150"
+                width="350"
+                marginAmount="20"
+            />
         </div>
     )
 }

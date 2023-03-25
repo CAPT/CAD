@@ -2,6 +2,8 @@ import React from 'react'
 import makerjs from 'makerjs'
 
 const FrontSide = (props) => {
+    console.log(props.gs)
+
     function segmentByStartAndLength(originLine, segmentLength, startPoint) {
         //откладывает на выбранной прямой отрезок указанной длины от startPoint
         const angle = Math.atan2(
@@ -14,6 +16,7 @@ const FrontSide = (props) => {
         ])
         return new makerjs.paths.Line(startPoint, segmentEnd)
     }
+
     function lineToLineUnderAngleWithLength(
         originLine,
         angleInDegrees,
@@ -245,12 +248,14 @@ const FrontSide = (props) => {
 
         // units: makerjs.unitType.Millimeter,
     }
-    const combinedPath = makerjs.model.combine(mainModel)
-    var outerModel = makerjs.model.outline(combinedPath, 10, 1, false)
+    const combinedMainPath = makerjs.model.combine(mainModel)
+    var outerModel = makerjs.model.outline(combinedMainPath, 10, 1, false)
+    combinedMainPath.layer = 'red'
+    outerModel.layer = 'blue'
 
     var totalModel = {
         models: {
-            combinedPath: combinedPath,
+            combinedMainPath: combinedMainPath,
             outerModel: outerModel,
         },
 
@@ -259,7 +264,7 @@ const FrontSide = (props) => {
 
     //var model = makerjs.model.combine(model, outline)
     const svg = makerjs.exporter.toSVG(totalModel)
-    document.write(`<div style="margin:20px">${svg}</div>`)
+    document.write(`<div style="margin:${props.marginAmount}px">${svg}</div>`)
 }
 
 export default FrontSide
