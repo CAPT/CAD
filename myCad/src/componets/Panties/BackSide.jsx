@@ -103,7 +103,7 @@ const BackSide = (props) => {
     var nd = {
         type: 'line',
         origin: n1n.end,
-        end: [n1n.end[0], n1n.end[1] - makerjs.measure.pathLength(n1n) / 4],
+        end: [n1n.end[0], n1n.end[1] + makerjs.measure.pathLength(n1n) / 4],
     }
     var dm1 = {
         type: 'line',
@@ -173,27 +173,83 @@ const BackSide = (props) => {
         100
     )
 
+    var cd = { type: 'line', origin: cc1.origin, end: nd.end }
+
+    //строим 2 невидимых вспомогательных для правильной дуги dmB
+    var ev2 = segmentByStartAndLength(
+        ev,
+        -makerjs.measure.pathLength(ev) / 1.6,
+        ev.end
+    )
+
+    var ev3 = segmentByStartAndLength(
+        ev,
+        makerjs.measure.pathLength(ev) / 15,
+        ev.origin
+    )
+    var v3v4 = lineToLineUnderAngleWithLength(ev3, 270, 13, ev3.end)
+
+    var ev1B = new makerjs.models.BezierCurve(
+        ge.end,
+        v3v4.end,
+        ev2.end,
+        vv1.end,
+        1
+    )
+
+    var mv = segmentByStartAndLength(
+        em,
+        -makerjs.measure.pathLength(em) / 2,
+        em.end
+    )
+    var mvMiddle = segmentByStartAndLength(
+        em,
+        -makerjs.measure.pathLength(mv) / 2,
+        em.end
+    )
+    var mvMiddle90 = lineToLineUnderAngleWithLength(
+        mvMiddle,
+        270,
+        11,
+        mvMiddle.end
+    )
+
+    //var vv1 = lineToLineUnderAngleWithLength(ev, 90, 7.5, ev.end)
+    var v1mB = new makerjs.models.BezierCurve(
+        vv1.end,
+        mvMiddle90.end,
+        //ev2.end,
+        m1m.end,
+        1
+    )
+
     var pathObject = {
-        an1: an1,
-        n1n: n1n,
-        at: at,
-        at1: at1,
-        tb: tb,
-        t1b: t1b,
-        t1g: t1g,
-        ge: ge,
-        ak: ak,
-        nd,
-        dm1,
-        m1m,
-        kc,
+        // an1: an1,
+        // n1n: n1n,
+        //at: at,
+        //at1: at1,
+        // tb: tb,
+        //t1b: t1b,
+        //t1g: t1g,
+        //ge: ge,
+        //ak: ak,
+        cd,
+        // nd,
+        // dm1,
+        //m1m,
+        //kc,
         cc1,
         gg1,
         ee1,
         g1e1,
-        em,
-        ev,
-        vv1,
+        // em,
+        //ev,
+        // vv1,
+        // mvMiddle,
+        // mvMiddle90,
+        // ev2,
+        // ev3,
+        // v3v4,
 
         //kg: kg,
         // nd: nd,
@@ -209,7 +265,7 @@ const BackSide = (props) => {
         // cc1: cc1,
         //  c1c2,
     }
-    var modelsObject = { mdB, c1gB }
+    var modelsObject = { mdB, c1gB, ev1B, v1mB }
 
     const svgOptions = {
         useTitle: true,
@@ -220,22 +276,22 @@ const BackSide = (props) => {
 
         // units: makerjs.unitType.Millimeter,
     }
-    //const combinedMainPath = makerjs.model.combine(mainModel)
-    // var outerModel = makerjs.model.outline(combinedMainPath, 10, 1, false)
-    // combinedMainPath.layer = 'red'
-    // outerModel.layer = 'blue'
+    const combinedMainPath = makerjs.model.combine(mainModel)
+    var outerModel = makerjs.model.outline(combinedMainPath, 10, 1, false)
+    combinedMainPath.layer = 'red'
+    outerModel.layer = 'blue'
 
-    // var totalModel = {
-    //     models: {
-    //         combinedMainPath: combinedMainPath,
-    //         outerModel: outerModel,
-    //     },
+    var totalModel = {
+        models: {
+            combinedMainPath: combinedMainPath,
+            outerModel: outerModel,
+        },
 
-    //     units: makerjs.unitType.Millimeter,
-    // }
+        units: makerjs.unitType.Millimeter,
+    }
 
     //var model = makerjs.model.combine(model, outline)
-    const svg = makerjs.exporter.toSVG(mainModel)
+    const svg = makerjs.exporter.toSVG(totalModel)
     document.write(`<div style="margin:${props.marginAmount}px">${svg}</div>`)
 }
 
