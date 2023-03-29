@@ -2,6 +2,7 @@ import React from 'react'
 import BackSide from './BackSide'
 import FrontSide from './FrontSide'
 import Gusset from './Gusset'
+import FSCopy from './FrontSide_copy'
 
 function Panties(props) {
     const ot = 720 //обхват талии
@@ -11,7 +12,16 @@ function Panties(props) {
 
     return (
         <div className="PantiesBlueprint">
-            <FrontSide
+            {/* <FrontSide
+                ot={ot}
+                ob={ob}
+                gs={gs}
+                vb={vb}
+                startX="0"
+                startY="0"
+                marginAmount={props.marginAmount}
+            /> */}
+            <FSCopy
                 ot={ot}
                 ob={ob}
                 gs={gs}

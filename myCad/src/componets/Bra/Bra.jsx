@@ -94,34 +94,103 @@ const Bra = (props) => {
     var av3 = {
         type: 'line',
         origin: ag.origin,
-        end: [ag.origin[0], ag.origin[1]+Vng+20],
+        end: [ag.origin[0], ag.origin[1] + Vng + 20],
     }
     console.log('av3' + av3.origin + ' to ' + av3.end)
 
-     var ac = {
-         type: 'line',
-         origin: ag.origin,
-         end: [ag.origin[0], (av3.end[1]-ag.origin[1] )/2],
-     }
+    var ac = {
+        type: 'line',
+        origin: ag.origin,
+        end: [ag.origin[0], (av3.end[1] - ag.origin[1]) / 2],
+    }
     console.log('ac' + ac.origin + ' to ' + ac.end)
-    
-     var cc1 = {
-         type: 'line',
-         origin: ac.end,
-         end: [ac.end[0]+8, ac.end[1]],
-     }
+
+    var cc1 = {
+        type: 'line',
+        origin: ac.end,
+        end: [ac.end[0] + 8, ac.end[1]],
+    }
     console.log('cc1' + cc1.origin + ' to ' + cc1.end)
-    
-     var gz = {
-         type: 'line',
-         origin: ag.end,
-         end: [ag.end[0], ag.end[1] + 40],
-     }
-     console.log('gz' + gz.origin + ' to ' + gz.end)
+
+    var gz = {
+        type: 'line',
+        origin: ag.end,
+        end: [ag.end[0], ag.end[1] + 40],
+    }
+    console.log('gz' + gz.origin + ' to ' + gz.end)
+
+    var av2 = {
+        type: 'line',
+        origin: ag.origin,
+        end: v1v2.end,
+    }
+    var av23 = segmentByStartAndLength(
+        av2,
+        (makerjs.measure.pathLength(av2) / 3) * 2,
+        av2.origin
+    )
 
     //curves
-    var pathObject = { ag, ag1, ag2, g1v, g2v1, v1v2, av3, ac, cc1, gz }
-    var modelsObject = {}
+
+    var v3_v23_v2B = new makerjs.models.BezierCurve(
+        [
+            av3.end,
+            [
+                av23.end[0],
+                av23.end[1] - makerjs.measure.pathLength(av23) * 0.25,
+            ],
+            v1v2.end,
+        ],
+        1
+    )
+
+    var aa1 = {
+        type: 'line',
+        origin: ag.origin,
+        end: [ag.origin[0], ag.origin[1] + 5],
+    }
+    console.log('aa1' + aa1.origin + ' to ' + aa1.end)
+
+    var v3v4 = {
+        type: 'line',
+        origin: av3.end,
+        end: [av3.end[0], av3.end[1] - 5],
+    }
+    console.log('v3v4' + v3v4.origin + ' to ' + v3v4.end)
+
+    var zvv1B = new makerjs.models.BezierCurve(
+        [
+            gz.end,
+            [g1v.end[0], g1v.end[1] - makerjs.measure.pathLength(g1v) * 0.58],
+            g2v1.end,
+        ],
+        1
+    )
+
+    var a1_z1_v4B = new makerjs.models.BezierCurve(
+        [
+            aa1.end,
+            [cc1.end[0] + makerjs.measure.pathLength(cc1), cc1.end[1]],
+            v3v4.end,
+        ],
+        1
+    )
+    var pathObject = {
+        ag,
+        ag1,
+        ag2,
+        //g1v,
+        // g2v1,
+        v1v2,
+        //av3,
+        //ac,
+        //cc1,
+        gz,
+        //av23,
+        aa1,
+        v3v4,
+    }
+    var modelsObject = { zvv1B, v3_v23_v2B, a1_z1_v4B }
 
     const svgOptions = {
         useTitle: true,
@@ -133,14 +202,15 @@ const Bra = (props) => {
         // units: makerjs.unitType.Millimeter,
     }
     const combinedMainPath = makerjs.model.combine(mainModel)
-    //  var outerModel = makerjs.model.outline(combinedMainPath, 10, 1, false)
-    //  combinedMainPath.layer = 'red'
-    //  outerModel.layer = 'blue'
+    var outerModel = makerjs.model.outline(combinedMainPath, 10, 1, false)
+    combinedMainPath.layer = 'red'
+    outerModel.layer = 'blue'
 
     var totalModel = {
         models: {
+            //mainModel: mainModel,
             combinedMainPath: combinedMainPath,
-            //  outerModel: outerModel,
+            outerModel: outerModel,
         },
 
         units: makerjs.unitType.Millimeter,

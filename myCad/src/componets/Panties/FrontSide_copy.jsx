@@ -2,11 +2,14 @@ import React from 'react'
 import makerjs from 'makerjs'
 import { jsPDF } from 'jspdf'
 import 'svg2pdf.js'
+//import svg2img from 'svg2img'
 
 const FrontSide = (props) => {
     console.log(props.gs)
 
     function exportSvgToPdf() {
+        // выбираем SVG-элемент из документа
+
         var x = 1
         var y = 1
         var width = 238.95
@@ -14,7 +17,7 @@ const FrontSide = (props) => {
         const doc = new jsPDF({
             orientation: 'portrait',
             unit: 'mm',
-            format: [500, 500],
+            format: 'a4',
         })
         const element = document.querySelector('#presentedSvg svg')
         doc.svg(element, {
@@ -300,11 +303,11 @@ const FrontSide = (props) => {
         <>
             <button onClick={exportSvgToPdf}>1232313</button>
             <div id="presentedSvg">
-                <img
+                {/* <img
                     src={`data:image/svg+xml;utf8,${encodeURIComponent(
                         svgModel
-                    )}`}
-                />
+                    )}`} */}
+                <div dangerouslySetInnerHTML={{ __html: svgModel }} />
             </div>
         </>
     )
