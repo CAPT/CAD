@@ -236,12 +236,14 @@ const FrontSide2 = (props) => {
                 d6a90Divided2.end[0], //props.ot * 0.003,
                 d6a90Divided2.end[1] - 18,
             ],
-            // [
-            //     n2n3.end[0] - makerjs.measure.pathLength(n2n3) * 1.8, //props.ot * 0.003,
-            //     n2n3.end[1],
-            // ],
+
             d5d6.end,
         ],
+        1
+    )
+
+    var c3l1B = new makerjs.models.BezierCurve(
+        [cc3.end, [cc3.end[0] - 3, cc3.end[1] - 25], ll1.end],
         1
     )
 
@@ -268,7 +270,7 @@ const FrontSide2 = (props) => {
         a4ar5,
         d6a90Divided2,
     }
-    var modelsObject = { c3n1d5B, ar5D6B }
+    var modelsObject = { c3n1d5B, ar5D6B, c3l1B }
 
     const svgOptions = {
         useTitle: true,
