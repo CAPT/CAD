@@ -5,7 +5,7 @@ import Line from './componets/Line'
 import Panties from './componets/Panties/Panties'
 import Panties2 from './componets/Panties2/Panties2'
 import Bra from './componets/Bra/Bra'
-
+import Bra1 from './componets/Bra1/Bra1'
 function App() {
     return (
         <div className="App">
@@ -18,13 +18,13 @@ function App() {
                 width="350"
                 marginAmount="20"
             /> */}
-            <Panties2
+            {/* <Panties2
                 startX="0"
                 startY="0"
                 height="150"
                 width="350"
                 marginAmount="20"
-            />
+            /> */}
             {/* <Bra
                 startX="0"
                 startY="0"
@@ -32,6 +32,13 @@ function App() {
                 width="350"
                 marginAmount="20"
             /> */}
+            <Bra1
+                startX="0"
+                startY="0"
+                height="150"
+                width="350"
+                marginAmount="20"
+            />
         </div>
     )
 }
