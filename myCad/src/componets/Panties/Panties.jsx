@@ -21,7 +21,7 @@ function Panties(props) {
                 startY="0"
                 marginAmount={props.marginAmount}
             /> */}
-            {/* <FSCopy
+            {/* {/* <FSCopy
                 ot={ot}
                 ob={ob}
                 gs={gs}
@@ -30,7 +30,16 @@ function Panties(props) {
                 startY="0"
                 marginAmount={props.marginAmount}
             /> */}
-            <BackSide
+            {/* <BackSide
+                ot={ot}
+                ob={ob}
+                gs={gs}
+                vb={vb}
+                startX="0"
+                startY="0"
+                marginAmount={props.marginAmount}
+            /> */}
+            <Gusset
                 ot={ot}
                 ob={ob}
                 gs={gs}
@@ -39,15 +48,6 @@ function Panties(props) {
                 startY="0"
                 marginAmount={props.marginAmount}
             />
-            {/* <Gusset
-                ot={ot}
-                ob={ob}
-                gs={gs}
-                vb={vb}
-                startX="0"
-                startY="0"
-                marginAmount={props.marginAmount}
-            /> */}
         </div>
     )
 }

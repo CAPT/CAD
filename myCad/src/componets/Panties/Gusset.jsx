@@ -312,6 +312,8 @@ const Gusset = (props) => {
     const combinedMainPath = makerjs.model.combine(mainModel)
     var outerModel = makerjs.model.outline(combinedMainPath, 10, 1, false)
     //combinedMainPath.layer = 'red'
+    combinedMainPath.notes = 'Combined Main Path'
+    outerModel.notes = 'Outer Model'
     outerModel.layer = 'blue'
 
     var totalModel = {
