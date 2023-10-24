@@ -11,13 +11,27 @@ function StringPants(props) {
     const vb = 180 //высота бедра
     const vi = 8 //высота букв
     const sh = 6 //ширина букв
-    
+
     return (
         <div>
             StringPants
-            <StringPants_front />
-            <StringPants_back />
-            <StringPants_gusset />
+            <StringPants_front
+                ot={ot}
+                ob={ob}
+                vs={vs}
+                vb={vb}
+                vi={vi}
+                sh={sh}
+            />
+            <StringPants_back ot={ot} ob={ob} vs={vs} vb={vb} vi={vi} sh={sh} />
+            <StringPants_gusset
+                ot={ot}
+                ob={ob}
+                vs={vs}
+                vb={vb}
+                vi={vi}
+                sh={sh}
+            />
         </div>
     )
 }
